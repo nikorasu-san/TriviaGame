@@ -1,0 +1,9 @@
+body {
+    background-color: lightskyblue;
+}
+
+.card,.card-body {
+    height: 80vh;
+    width: 100%;
+    background-color: hotpink;
+}
