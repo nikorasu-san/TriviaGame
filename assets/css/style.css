@@ -1,9 +1,46 @@
 body {
-    background-color: lightskyblue;
+    background-color: #6df39f;
+    background-image: url(../images/17368.jpg);
+    background-size: 100vw 100vh;
 }
 
 .card,.card-body {
-    height: 80vh;
+    /* height: 80vh; */
+    top: 4.5em;
     width: 100%;
-    background-color: hotpink;
+    background-color: white;
+    border: 3px solid;
+}
+
+.card {
+    margin-bottom: 1%;
+}
+
+#clock-face {
+    background-color: #ef5757;
+}
+
+.green {
+    color: #039703;
+}
+
+.answers {
+    border: 2px solid;
+    padding: 1%;
+}
+
+#choice-0 {
+    background-color: #fcb737;  
+}
+
+#choice-1 {
+    background-color: #ffff58;
+}
+
+#choice-2 {
+    background-color: #74c6f8;
+}
+
+#choice-3 {
+    background-color: #e294e2;
 }
