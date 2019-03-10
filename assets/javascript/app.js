@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    // api link - https://opentdb.com/api.php?amount=20&category=29&difficulty=medium&type=multiple
     let easyResults = [{ "category": "Entertainment: Comics", "type": "multiple", "difficulty": "easy", "question": "Who is Batman?", "correct_answer": "Bruce Wayne", "incorrect_answers": ["Clark Kent", "Barry Allen", "Tony Stark"] }, { "category": "Entertainment: Comics", "type": "multiple", "difficulty": "easy", "question": "Who is the creator of the comic series &quot;The Walking Dead&quot;?", "correct_answer": "Robert Kirkman", "incorrect_answers": ["Stan Lee", "Malcolm Wheeler-Nicholson", "Robert Crumb"] }, { "category": "Entertainment: Comics", "type": "multiple", "difficulty": "easy", "question": "This Marvel superhero is often called &quot;The man without fear&quot;.", "correct_answer": "Daredevil", "incorrect_answers": ["Thor", "Wolverine", "Hulk"] }, { "category": "Entertainment: Comics", "type": "multiple", "difficulty": "easy", "question": "Which universe crossover was introduced in the &quot;Sonic the Hedgehog&quot; comic issue #247?", "correct_answer": "Mega Man", "incorrect_answers": ["Super Mario Brothers", "Alex Kidd", "Super Monkey Ball"] }, { "category": "Entertainment: Comics", "type": "multiple", "difficulty": "easy", "question": "What is the alter-ego of the DC comics character &quot;Superman&quot;?", "correct_answer": "Clark Kent", "incorrect_answers": ["Bruce Wayne", "Arthur Curry", "John Jones"] }, { "category": "Entertainment: Comics", "type": "multiple", "difficulty": "easy", "question": "What is the full first name of the babysitter in Calvin and Hobbes?", "correct_answer": "Rosalyn", "incorrect_answers": ["Rose", "Ruby", "Rachel"] }, { "category": "Entertainment: Comics", "type": "multiple", "difficulty": "easy", "question": "The main six year old protagonist in Calvin and Hobbes is named after what theologian?", "correct_answer": "John Calvin", "incorrect_answers": ["Calvin Klein", "Calvin Coolidge", "Phillip Calvin McGraw"] }]
     let hardResults = [{ "category": "Entertainment: Comics", "type": "multiple", "difficulty": "hard", "question": "In the Batman comics, by what other name is the villain Dr. Jonathan Crane known?", "correct_answer": "Scarecrow", "incorrect_answers": ["Bane", "Calendar Man", "Clayface"] }, { "category": "Entertainment: Comics", "type": "multiple", "difficulty": "hard", "question": "In what Homestuck Update was [S] Game Over released?", "correct_answer": "October 25th, 2014", "incorrect_answers": ["April 13th, 2009", "April 8th, 2012", "August 28th, 2003"] }, { "category": "Entertainment: Comics", "type": "multiple", "difficulty": "hard", "question": "In the Homestuck Series, what is the alternate name for the Kingdom of Lights?", "correct_answer": "Prospit", "incorrect_answers": ["No Name", "Golden City", "Yellow Moon"] }, { "category": "Entertainment: Comics", "type": "multiple", "difficulty": "hard", "question": "What year was the first San Diego Comic-Con?", "correct_answer": "1970", "incorrect_answers": ["2000", "1990", "1985"] }, { "category": "Entertainment: Comics", "type": "multiple", "difficulty": "hard", "question": "When was the Garfield comic first published?", "correct_answer": "1978", "incorrect_answers": ["1982", "1973", "1988"] }, { "category": "Entertainment: Comics", "type": "multiple", "difficulty": "hard", "question": "What is the real hair colour of the mainstream comic book version (Earth-616) of Daredevil?", "correct_answer": "Blonde", "incorrect_answers": ["Auburn", "Brown", "Black"] }, { "category": "Entertainment: Comics", "type": "multiple", "difficulty": "hard", "question": "In what year did the first &quot;The Walking Dead&quot; comic come out?", "correct_answer": "2003", "incorrect_answers": ["2001", "2006", "1999"] }, { "category": "Entertainment: Comics", "type": "multiple", "difficulty": "hard", "question": "In the &quot;Archie&quot; comics, who was Jughead&#039;s first girlfriend?", "correct_answer": "Joani", "incorrect_answers": ["Ethel", "Debbi", "Margret"] }, { "category": "Entertainment: Comics", "type": "multiple", "difficulty": "hard", "question": "In the webcomic &quot;Ava&#039;s Demon&quot;, what sin is &quot;Nevy Nervine&quot; based off of? ", "correct_answer": "Envy ", "incorrect_answers": ["Sloth", "Wrath ", "Lust"] }, { "category": "Entertainment: Comics", "type": "multiple", "difficulty": "hard", "question": "When Batman trolls the online chat rooms, what alias does he use?", "correct_answer": "JonDoe297", "incorrect_answers": ["iAmBatman", "BWayne13", "BW1129"] }, { "category": "Entertainment: Comics", "type": "multiple", "difficulty": "hard", "question": "In 1978, Superman teamed up with what celebrity, to defeat an alien invasion?", "correct_answer": "Muhammad Ali", "incorrect_answers": ["Mike Tyson", "Sylvester Stallone", "Arnold Schwarzenegger"] }, { "category": "Entertainment: Comics", "type": "multiple", "difficulty": "hard", "question": "Which of the following rings from the DC Comics&#039; &quot;Lantern Corps&quot; are classified as Parasitic?", "correct_answer": "Indigo (Compassion)", "incorrect_answers": ["Green (Willpower)", "White (Life)", "Yellow (Fear)"] }]
     let mediumResults = [
@@ -297,10 +296,7 @@ $(document).ready(function () {
     }
     let sortedArray = [];
     let results = [];
-    let firstQuestion = results[0]
-    //let nextQuestion = printQuestion(currentQuestion)
     let start;
-    //let apiToken = "e40c9099859f637ec74c33464a9f24bb3d77556c1f2ad9f208a54083134faeb1"
 
     // --- Functions --- 
 
@@ -329,7 +325,24 @@ $(document).ready(function () {
     // stop timer
     function stopTimer() {
         clearInterval(start);
+        // print loading next question message
         $("#clock").html("Loading " + (values.questionId + 1) + " of " + results.length + " <span class='spinner-border' role='status' aria-hidden='true'></span><span class='sr-only'>Loading...</span>");
+    }
+
+    // make a sound for successful answer
+    function audioCorrect() {
+        let audioElement = document.createElement("audio");
+        audioElement.setAttribute("src", "./assets/sounds/Successful-sound.mp3");
+        audioElement.playbackRate = 3.0;
+        audioElement.play();
+    }
+
+    // make a sound for incorrect or no answer
+    function audioWrong() {
+        let audioElement = document.createElement("audio");
+        audioElement.setAttribute("src", "./assets/sounds/Error-sound.mp3");
+        audioElement.playbackRate = 1.5;
+        audioElement.play();
     }
 
     //  next screen
@@ -343,39 +356,6 @@ $(document).ready(function () {
         }
     }
 
-    //  out of time
-    function outOfTime() {
-        values.unanswered++;
-        // print clock message
-        // $("#clock").html("Oh no! You ran out of time!");
-        // print correct message
-        $("#main").empty();
-        printCorrectAnswer();
-        audioWrong();
-        // print image
-        $("#main").append("<img src='./assets/images/tony-hurt.gif'>");
-        // load next screen
-        values.questionId++;
-        stopTimer();
-        nextScreen();
-    }
-
-    // Make a sound for successful answer
-    function audioCorrect() {
-        let audioElement = document.createElement("audio");
-        audioElement.setAttribute("src", "./assets/sounds/Successful-sound.mp3");
-        audioElement.playbackRate = 3.0;
-        audioElement.play();
-    }
-
-    // Make a sound for incorrect answer
-    function audioWrong() {
-        let audioElement = document.createElement("audio");
-        audioElement.setAttribute("src", "./assets/sounds/Error-sound.mp3");
-        audioElement.playbackRate = 1.5;
-        audioElement.play();
-    }
-
     // sort answers
     function sortChoices(element) {
         // push correct and incorrect answers in array
@@ -383,7 +363,6 @@ $(document).ready(function () {
         sortedArray.push(element.correct_answer);
         // sort array to put them in alphabetical order
         sortedArray.sort();
-        console.log("in function: ", sortedArray)
         return sortedArray;
     }
 
@@ -392,12 +371,27 @@ $(document).ready(function () {
         $("#main").append("<br><h2>The correct answer was: <br><span class='green'>" + results[values.questionId].correct_answer + "</span></h2><br>");
     }
 
+    //  out of time
+    function outOfTime() {
+        values.unanswered++;
+        audioWrong();
+        // print correct message
+        $("#main").empty();
+        printCorrectAnswer();
+        // print image
+        $("#main").append("<img src='./assets/images/tony-hurt.gif'>");
+        // load next screen
+        values.questionId++;
+        stopTimer();
+        nextScreen();
+    }
+
     // process a correct choice
     function correctChoice() {
         values.correct++;
-        $("#main").empty();
         audioCorrect();
         // print message
+        $("#main").empty();
         $("#main").append("<hr><h2>Good Job, smartypants!</h2>");
         printCorrectAnswer();
         // print image
@@ -411,9 +405,9 @@ $(document).ready(function () {
     // process an incorrect choice
     function wrongChoice() {
         values.wrong++;
-        $("#main").empty();
         audioWrong();
         // print message
+        $("#main").empty();
         $("#main").append("<hr><h2>Whoops, wrong answer</h2>");
         printCorrectAnswer();
         // print image
@@ -465,8 +459,6 @@ $(document).ready(function () {
         let displayQuestion = $("<hr><h2>" + element.question + "</h2><br><hr>");
         $("#main").append(displayQuestion);
         // sort multiple choice alphabetically
-        console.log("before sort is called in print function:", sortedArray)
-        console.log("element before pushed to sort function:", element)
         sortChoices(element);
         for (let i = 0; i < sortedArray.length; i++) {
             let displayChoice = $("<h2 class='answers' id='choice-" + i + "'>" + sortedArray[i] + "</h2>");
@@ -490,11 +482,11 @@ $(document).ready(function () {
 
     // ---- main app ---- 
     $(document).on("touchstart click", ".btn", function () {
-        //reset score incase it is a sequential game 
+        // reset score incase it is a sequential game 
         values.correct = 0;
         values.wrong = 0;
         values.unanswered = 0;
-
+        // decide question set based on button 
         if ($(this).attr("id") === "easy") {
             console.log(results)
             results = easyResults.slice();
@@ -507,18 +499,5 @@ $(document).ready(function () {
             results = hardResults.slice();
             printQuestion(results[0]);
         }
-
-        //  if (values.questionId < results.length) {
-
-        // printQuestion(firstQuestion);
-
-
-
-        //console.log(" log post function:", sortedArray)
-        // } else {
-        // print scorecard
-
-        //  }
-
     })
 });
