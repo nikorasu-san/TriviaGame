@@ -442,7 +442,7 @@ $(document).ready(function () {
         $('#main').append(printValCorrect, printValWrong, printValUnanswered, printGrade);
         // post the new game buttons again <button id="start">Start</button>
         $("#main").append("<hr><h2>Choose difficulty for new game<h2>")
-        let newGame = $("<button id='easy' class='btn btn-primary'>Easy</button> <button id='medium' class='btn btn-success'>Medium</button> <button id='hard' class='btn btn-danger'>Hard</button>")
+        let newGame = $("<button type='button' id='easy' class='btn btn-primary'>Easy</button> <button type='button' id='medium' class='btn btn-success'>Medium</button> <button type='button' id='hard' class='btn btn-danger'>Hard</button>")
         $("#main").append(newGame)
         // print image
         if (values.correct < 19) {
