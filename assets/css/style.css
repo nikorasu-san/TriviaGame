@@ -44,3 +44,7 @@ body {
 #choice-3 {
     background-color: #e294e2;
 }
+
+div {
+    cursor:pointer;
+}
