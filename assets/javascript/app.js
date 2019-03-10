@@ -456,7 +456,7 @@ $(document).ready(function () {
         resetTimer();
         startTimer();
         // isolate and print actual question
-        let displayQuestion = $("<hr><h2>" + element.question + "</h2><br><hr>");
+        let displayQuestion = $("<h2>" + element.question + "</h2><br><hr>");
         $("#main").append(displayQuestion);
         // sort multiple choice alphabetically
         sortChoices(element);
@@ -488,15 +488,16 @@ $(document).ready(function () {
         values.unanswered = 0;
         // decide question set based on button 
         if ($(this).attr("id") === "easy") {
-            console.log(results)
             results = easyResults.slice();
-            console.log(results)
             printQuestion(results[0]);
         } else if ($(this).attr("id") === "medium") {
             results = mediumResults.slice();
             printQuestion(results[0]);
         } else if ($(this).attr("id") === "hard") {
             results = hardResults.slice();
+            printQuestion(results[0]);
+        } else if ($(this).text() === "Easy") {
+            results = easyResults.slice();
             printQuestion(results[0]);
         }
     })
