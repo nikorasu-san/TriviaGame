@@ -489,7 +489,7 @@ $(document).ready(function () {
 
 
     // ---- main app ---- 
-    $(document).on("click touchstart", ".btn", function () {
+    $(document).on("touchstart click", ".btn", function () {
         //reset score incase it is a sequential game 
         values.correct = 0;
         values.wrong = 0;
