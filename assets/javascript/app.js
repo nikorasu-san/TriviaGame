@@ -245,49 +245,49 @@ $(document).ready(function () {
     ]
 
     //short list for testing
-    let testResults = [
-        {
-            "category": "Entertainment: Comics",
-            "type": "multiple",
-            "difficulty": "medium",
-            "question": "In Marvel Comics, Taurus is the founder and leader of which criminal organization?",
-            "correct_answer": "Zodiac",
-            "incorrect_answers": [
-                "Scorpio",
-                "Tiger Mafia",
-                "The Union"
-            ]
-        },
-        {
-            "category": "Entertainment: Comics",
-            "type": "multiple",
-            "difficulty": "medium",
-            "question": "What was the name of the first Robin in the Batman comics?",
-            "correct_answer": "Dick Grayson",
-            "incorrect_answers": [
-                "Bruce Wayne",
-                "Jason Todd",
-                "Tim Drake"
-            ]
-        },
-        {
-            "category": "Entertainment: Comics",
-            "type": "multiple",
-            "difficulty": "medium",
-            "question": "What is the name of the comic about a young boy, and a tiger who is actually a stuffed animal?",
-            "correct_answer": "Calvin and Hobbes",
-            "incorrect_answers": [
-                "Winnie the Pooh",
-                "Albert and Pogo",
-                "Peanuts"
-            ]
-        }]
+    // let testResults = [
+    //     {
+    //         "category": "Entertainment: Comics",
+    //         "type": "multiple",
+    //         "difficulty": "medium",
+    //         "question": "In Marvel Comics, Taurus is the founder and leader of which criminal organization?",
+    //         "correct_answer": "Zodiac",
+    //         "incorrect_answers": [
+    //             "Scorpio",
+    //             "Tiger Mafia",
+    //             "The Union"
+    //         ]
+    //     },
+    //     {
+    //         "category": "Entertainment: Comics",
+    //         "type": "multiple",
+    //         "difficulty": "medium",
+    //         "question": "What was the name of the first Robin in the Batman comics?",
+    //         "correct_answer": "Dick Grayson",
+    //         "incorrect_answers": [
+    //             "Bruce Wayne",
+    //             "Jason Todd",
+    //             "Tim Drake"
+    //         ]
+    //     },
+    //     {
+    //         "category": "Entertainment: Comics",
+    //         "type": "multiple",
+    //         "difficulty": "medium",
+    //         "question": "What is the name of the comic about a young boy, and a tiger who is actually a stuffed animal?",
+    //         "correct_answer": "Calvin and Hobbes",
+    //         "incorrect_answers": [
+    //             "Winnie the Pooh",
+    //             "Albert and Pogo",
+    //             "Peanuts"
+    //         ]
+    //     }]
 
     let values = {
         correct: 0,
         wrong: 0,
         unanswered: 0,
-        timer: 10,
+        timer: 20,
         questionId: 0,
         grade: function () {
             let sub = (this.correct / results.length) * 100;
@@ -302,7 +302,7 @@ $(document).ready(function () {
 
     // reset timer function
     function resetTimer() {
-        values.timer = 10;
+        values.timer = 20;
     }
 
     // decrement timer
@@ -392,7 +392,7 @@ $(document).ready(function () {
         audioCorrect();
         // print message
         $("#main").empty();
-        $("#main").append("<hr><h2>Good Job, smartypants!</h2>");
+        $("#main").append("<h2>Great job, smartypants!</h2>");
         printCorrectAnswer();
         // print image
         $("#main").append("<img src='./assets/images/spider-bop.gif'>")
@@ -408,7 +408,7 @@ $(document).ready(function () {
         audioWrong();
         // print message
         $("#main").empty();
-        $("#main").append("<hr><h2>Whoops, wrong answer</h2>");
+        $("#main").append("<h2>Whoops, wrong answer</h2>");
         printCorrectAnswer();
         // print image
         $("#main").append("<img src='./assets/images/tony-hurt.gif'>");
@@ -424,25 +424,25 @@ $(document).ready(function () {
         $("#main").empty();
         $("#clock").html(" ");
         // print messages and score
-        $("#main").append("<br><h2>You completed the game</h2><hr>");
-        let printValCorrect = $('<h2>');
+        $("#main").append("<br><h2>You completed the game!</h2><hr>");
+        let printValCorrect = $('<h3>');
         printValCorrect.text("Correct: " + values.correct);
-        let printValWrong = $('<h2>');
+        let printValWrong = $('<h3>');
         printValWrong.text("Incorrect: " + values.wrong);
-        let printValUnanswered = $('<h2>');
+        let printValUnanswered = $('<h3>');
         printValUnanswered.text("Unanswered: " + values.unanswered);
-        let printGrade = $('<h2>');
+        let printGrade = $('<h3>');
         printGrade.text("Grade: " + values.grade() + "%");
         $('#main').append(printValCorrect, printValWrong, printValUnanswered, printGrade);
         // post the new game buttons again <button id="start">Start</button>
-        $("#main").append("<hr><h2>Choose difficulty for new game<h2>")
+        $("#main").append("<hr><h3>Choose difficulty for new game<h3>")
         let newGame = $("<button type='button' id='easy' class='btn btn-primary'>Easy</button> <button type='button' id='medium' class='btn btn-success'>Medium</button> <button type='button' id='hard' class='btn btn-danger'>Hard</button>")
         $("#main").append(newGame)
         // print image
-        if (values.correct < 19) {
+        if (values.correct < results.length) {
             $("#main").append("<br><br><img src='./assets/images/nick-side-eye.gif'>");
         } else {
-            $("#main").append("<br><br><a href='https://open.spotify.com/album/47LpgGVshd0tbFSbm9tTLb'><img src='./assets/images/sv-song.gif'></a>");
+            $("#main").append("<br><br><h4>Click the image or a pleasant surprise!<h4><br><a href='https://open.spotify.com/album/47LpgGVshd0tbFSbm9tTLb' target='_blank'><img src='./assets/images/sv-song.gif'></a>");
         }
         // reset questionsId to allow button to work
         values.questionId = 0
@@ -468,11 +468,9 @@ $(document).ready(function () {
         $(".answers").on("click", function () {
             // check if answer is right
             if ($(this).text() === element.correct_answer) {
-                console.log("correct")
                 // show message
                 correctChoice();
             } else {
-                console.log("incorrect")
                 // show message
                 wrongChoice();
             }
@@ -495,9 +493,6 @@ $(document).ready(function () {
             printQuestion(results[0]);
         } else if ($(this).attr("id") === "hard") {
             results = hardResults.slice();
-            printQuestion(results[0]);
-        } else if ($(this).text() === "Easy") {
-            results = easyResults.slice();
             printQuestion(results[0]);
         }
     })

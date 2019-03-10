@@ -2,7 +2,7 @@
 Objective: Create a Trivia game using JavaScript for the logic and jQuery to manipulate HTML.
 
 ## Overview
-This is trivia game specializing in comic book related questions. As a fan of geek culture, I had to make a comic book trivia game at some point in my life. So no time like the present!
+This is trivia game specializing in comic book related questions. As a fan of geek culture, I have to make a comic book trivia game at some point in my life. No time like the present!
 
 ## Instructions
 1. Choose a difficulty setting for the trivia questions (easy, medium, hard)
@@ -19,4 +19,5 @@ This is trivia game specializing in comic book related questions. As a fan of ge
 * Consider a new API that is a better fit for this theme or become a member of Open Trivia Database to help with the freshness for the Comic book category questions.
 * Consider a feature to randomize the order of questions.
 * Consider making sure each difficulty option has the same quantity of questions.
-* Before project due date, I couldn't resolve an issue preventing mobile devices from being able to click the start game buttons. I reviewed tips on Stack Overflow to add in a cursor: pointer property to the CSS, but "touchclick" and "click" jQuery events are being ignored on my mobile device. I believe this issue could be tied to my use of Boostraps CDN in some way. The site was working on my mobile device during earlier phases of the site.
+* Before project due date, I couldn't resolve a bug preventing mobile/tablet devices from being able to click the start game buttons. I reviewed tips on Stack Overflow to add in a cursor: pointer property to the CSS, but "touchclick" and "click" jQuery events are being ignored on my mobile device. I believe this issue could be tied to my use of Boostraps CDN in some way. The site was working on my mobile device during earlier phases of the site.
+* Once this is working for mobile devices, consider using "sticky-top" class to allow users to see the clock panel as they scroll down the questions.
