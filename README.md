@@ -16,7 +16,7 @@ This is trivia game specializing in comic book related questions. As a fan of ge
 * The background image was sourced from http://www.freepik.com and credited (as requested) on the live site.
 
 ## Future Recommendations
-* Consider a new API that is a better fit for this theme or become a member of Open Trivia Database to help with the freshness for the Comic book category questions.
+* Consider a new API that is a better fit for this theme or become a member of Open Trivia Database to help with the freshness for the Comic book category questions. The Open Trivia Database API has less questions than the count call suggests. For now, the questions are coded into the JS directly.
 * Consider a feature to randomize the order of questions.
 * Consider making sure each difficulty option has the same quantity of questions.
 * Before project due date, I couldn't resolve a bug preventing mobile/tablet devices from being able to click the start game buttons. I reviewed tips on Stack Overflow to add in a cursor: pointer property to the CSS, but "touchclick" and "click" jQuery events are being ignored on my mobile device. I believe this issue could be tied to my use of Boostraps CDN in some way. The site was working on my mobile device during earlier phases of the site.
