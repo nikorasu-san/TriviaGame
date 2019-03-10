@@ -46,5 +46,5 @@ body {
 }
 
 div,button,.btn,section {
-    cursor: pointer;
+    cursor: pointer!important;
 }
