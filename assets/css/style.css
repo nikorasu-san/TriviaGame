@@ -45,6 +45,6 @@ body {
     background-color: #e294e2;
 }
 
-div {
-    cursor:pointer;
+div,button {
+    cursor: pointer;
 }
